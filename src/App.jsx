@@ -5,11 +5,12 @@ import "./App.css";
 import Component1 from "./Component1";
 import Component2 from "./Component2";
 import UseEffect from "./UseEffect";
+import LoadingState from "./LoadingState";
 
 function App() {
   return (
     <>
-      <UseEffect />
+      <LoadingState />
     </>
   );
 }
