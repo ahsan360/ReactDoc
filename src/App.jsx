@@ -6,11 +6,12 @@ import Component1 from "./Component1";
 import Component2 from "./Component2";
 import UseEffect from "./UseEffect";
 import LoadingState from "./LoadingState";
+import MyForm from "./MyForm";
 
 function App() {
   return (
     <>
-      <LoadingState />
+      <MyForm />
     </>
   );
 }
