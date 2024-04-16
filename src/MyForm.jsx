@@ -1,58 +1,62 @@
 import React, { useState } from "react";
 
-function MyForm() {
-  // State to manage form input
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-  });
+const MyForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
-  // Handle input change
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
   };
 
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // You can perform any validation or submit data to a server here
-    console.log("Form submitted:", formData);
-    // Clear form fields after submission
-    setFormData({
-      username: "",
-      email: "",
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Validation logic
+    const newErrors = {};
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    }
+    if (!password.trim()) {
+      newErrors.password = "Password is required";
+    }
+    setErrors(newErrors);
+
+    // If no errors, submit form
+    if (Object.keys(newErrors).length === 0) {
+      // Submit form to server or perform other actions
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
+        <label>Email:</label>
         <input
           type="email"
-          id="email"
           name="email"
-          value={formData.email}
+          value={email}
           onChange={handleInputChange}
         />
+        {errors.email && <span>{errors.email}</span>}
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleInputChange}
+        />
+        {errors.password && <span>{errors.password}</span>}
       </div>
       <button type="submit">Submit</button>
     </form>
   );
-}
+};
 
 export default MyForm;
