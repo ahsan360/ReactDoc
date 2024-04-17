@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import Component1 from "./Component1";
-import Component2 from "./Component2";
-import UseEffect from "./UseEffect";
-import LoadingState from "./LoadingState";
+import React from "react";
+import ErrorBoundary from "./ErrorBoundary";
 import MyForm from "./MyForm";
+import ComponentWithError from "./ComponentWithError";
 
-function App() {
+const App = () => {
   return (
     <>
-      <MyForm />
+      <ErrorBoundary>
+        <MyForm />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ComponentWithError />
+      </ErrorBoundary>
     </>
   );
-}
+};
 
 export default App;
